@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - filrouge@localhost" uuid="dbc90405-6d3c-435d-b107-cd437e585d35">
+    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="filrouge"/>
+    <table name="administrateur" schema="" catalog="filrouge" type="TABLE">
+      <column name="id_administrateur" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_utilisateur" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id_administrateur"/>
+      <foreign-key name="administrateur_ibfk_1" columns="id_utilisateur" ref-table="utilisateur" ref-schema="" ref-catalog="filrouge" ref-columns="id_utilisateur" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="id_administrateur" unique="false" columns="id_administrateur"/>
+    </table>
+    <table name="annonce" schema="" catalog="filrouge" type="TABLE">
+      <column name="id_annonce" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="titre_annonce" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nom_fdc" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_localisation" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="prix_annonce" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="descriptif_annonce" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="image_annonce" sqlType="BLOB" precision="65535" scale="0" nullable="false" jdbcType="-4"/>
+      <column name="date_annonce" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="id_utilisateur" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="loyer_annuel" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="montant_charges" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="surface" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="vitrine" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12"/>
+      <column name="chiffre_affaire" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="ebe" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="dpe" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="ges" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="id_annonce"/>
+      <foreign-key name="annonce_ibfk_1" columns="id_utilisateur" ref-table="utilisateur" ref-schema="" ref-catalog="filrouge" ref-columns="id_utilisateur" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="annonce_ibfk_2" columns="id_type" ref-table="type_fdc" ref-schema="" ref-catalog="filrouge" ref-columns="id_type" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="annonce_ibfk_3" columns="id_localisation" ref-table="localisation" ref-schema="" ref-catalog="filrouge" ref-columns="id_localisation" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="localisation" schema="" catalog="filrouge" type="TABLE">
+      <column name="id_localisation" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="adresse" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="code_postal" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ville" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id_localisation"/>
+      <exported-key name="annonce_ibfk_3" table="annonce" schema="" catalog="filrouge" columns="id_localisation"/>
+    </table>
+    <table name="type_fdc" schema="" catalog="filrouge" type="TABLE">
+      <column name="id_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="libelle_type" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id_type"/>
+      <exported-key name="annonce_ibfk_2" table="annonce" schema="" catalog="filrouge" columns="id_type"/>
+      <index name="id_type" unique="false" columns="id_type"/>
+    </table>
+    <table name="utilisateur" schema="" catalog="filrouge" type="TABLE">
+      <column name="id_utilisateur" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom_utilisateur" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="prenom_utilisateur" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mdp_utilisateur" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="num_tel_utilisateur" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mail_utilisateur" sqlType="VARCHAR" precision="320" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_utilisateur"/>
+      <exported-key name="administrateur_ibfk_1" table="administrateur" schema="" catalog="filrouge" columns="id_utilisateur"/>
+      <exported-key name="annonce_ibfk_1" table="annonce" schema="" catalog="filrouge" columns="id_utilisateur"/>
+      <index name="id_utilisateur" unique="false" columns="id_utilisateur"/>
+    </table>
+  </data-source>
+</component>
